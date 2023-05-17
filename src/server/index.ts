@@ -6,8 +6,19 @@ import {
   notFoundError,
 } from "./middlewares/errorMiddlewares/errorMiddlewares.js";
 import { auth } from "./middlewares/authMiddleware/authMiddleware.js";
+import cors from "cors";
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://two02304-w7ch1-tirmary-reyes.onrender.com/",
+];
+
+const options: cors.CorsOptions = {
+  origin: allowedOrigins,
+};
 
 const app = express();
+app.use(cors(options));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
